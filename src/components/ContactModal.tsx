@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { ThemeStyle } from '../utils/themes';
-import { X, Send, Mail, CheckCircle2, MessageSquare, User, Copy, Check, Info, Download } from 'lucide-react';
+import { X, Send, Mail, CheckCircle2, MessageSquare, User, Copy, Check, Info } from 'lucide-react';
 import { InquiryMessage } from '../types';
-import { downloadProjectZip } from '../utils/projectExporter';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -209,39 +208,22 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
               {error && <p className="text-xs text-rose-600 font-medium">{error}</p>}
 
-              <div className="pt-3 border-t border-neutral-200/80 flex items-center justify-between gap-3 flex-wrap">
-                <button
-                  type="button"
-                  onClick={async () => {
-                    try {
-                      await downloadProjectZip();
-                    } catch {
-                      // ignore
-                    }
-                  }}
-                  className="text-xs flex items-center gap-1.5 text-neutral-600 hover:text-amber-800 font-medium py-1 px-2.5 rounded-lg border border-neutral-200 bg-neutral-50 hover:bg-amber-50/60 transition-colors cursor-pointer"
+              <div className="pt-2 flex items-center justify-between gap-3">
+                <a
+                  href="mailto:globalharmonyrun@gmail.com"
+                  className="text-xs flex items-center gap-1.5 text-amber-800 hover:underline font-medium"
                 >
-                  <Download className="w-3.5 h-3.5 text-amber-700" />
-                  <span>Download Page (.zip)</span>
+                  <Mail className="w-3.5 h-3.5 text-amber-700" />
+                  <span>Email Directly</span>
+                </a>
+
+                <button
+                  type="submit"
+                  className="px-5 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 text-white shadow-md cursor-pointer transition-all"
+                >
+                  <span>Send Inquiry</span>
+                  <Send className="w-3.5 h-3.5" />
                 </button>
-
-                <div className="flex items-center gap-2">
-                  <a
-                    href="mailto:globalharmonyrun@gmail.com"
-                    className="text-xs flex items-center gap-1.5 text-amber-800 hover:underline font-medium"
-                  >
-                    <Mail className="w-3.5 h-3.5 text-amber-700" />
-                    <span>Email Directly</span>
-                  </a>
-
-                  <button
-                    type="submit"
-                    className="px-4 py-2 rounded-xl font-semibold text-xs flex items-center gap-2 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 text-white shadow-md cursor-pointer transition-all"
-                  >
-                    <span>Send Inquiry</span>
-                    <Send className="w-3.5 h-3.5" />
-                  </button>
-                </div>
               </div>
             </form>
           </div>

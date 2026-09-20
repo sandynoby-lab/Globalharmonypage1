@@ -6,7 +6,6 @@ import { BackgroundMesh } from './components/BackgroundMesh';
 import { SikhWorshipIllustration } from './components/SikhWorshipIllustration';
 import { MarathonLineArt } from './components/MarathonLineArt';
 import { ContactModal } from './components/ContactModal';
-import { downloadProjectZip } from './utils/projectExporter';
 import {
   Sparkles,
   Mail,
@@ -15,7 +14,6 @@ import {
   Flame,
   Award,
   Info,
-  Download,
 } from 'lucide-react';
 
 const STORAGE_KEY_CONFIG = 'globalharmonyrun_config_v5';
@@ -238,31 +236,8 @@ export default function App() {
             <span className="font-mono font-semibold text-neutral-700">{config.domainName || 'GlobalHarmonyRun.in'}</span>
           </div>
 
-          {/* Direct Email Contact & Download in Footer */}
-          <div className="flex items-center gap-2 flex-wrap">
-            <button
-              type="button"
-              id="btn-footer-download-zip"
-              onClick={async () => {
-                showToast('Preparing project ZIP package...');
-                try {
-                  await downloadProjectZip();
-                  showToast('Downloaded project ZIP to your computer!');
-                } catch {
-                  showToast('Export failed. Please try again.');
-                }
-              }}
-              className={`px-3 py-1.5 rounded-xl border flex items-center gap-1.5 font-semibold text-xs transition-all cursor-pointer ${
-                isLight
-                  ? 'border-amber-400/80 bg-amber-50 hover:bg-amber-100 text-amber-900 shadow-xs'
-                  : 'border-amber-500/40 bg-amber-950/40 hover:bg-amber-900/50 text-amber-200'
-              }`}
-              title="Download complete project ZIP to your computer"
-            >
-              <Download className="w-3.5 h-3.5 text-amber-700" />
-              <span>Download Project (.zip)</span>
-            </button>
-
+          {/* Direct Email Contact in Footer */}
+          <div className="flex items-center gap-2">
             <a
               href="mailto:globalharmonyrun@gmail.com"
               className={`px-3 py-1.5 rounded-xl border flex items-center gap-1.5 font-medium transition-all ${
